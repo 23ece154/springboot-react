@@ -1,0 +1,17 @@
+Day-2 Research Task 
+
+A stateless API means the server does not remember anything about previous requests from a client.
+A stateful API means the server remembers things about you — like your session, login, etc.
+
+So why not use Stateful APIs?
+
+Need to store data for each user in memory
+Are hard to scale with many users
+Don’t work well in distributed systems like the cloud
+Cause session problems if one server fails or restarts
+
+How to Use a Stateful API?
+
+1. Server Creates a Session After Login
+2. Client Automatically Sends Session with Every Request
+3. Server Uses Session Data (State-Memory)
