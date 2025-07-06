@@ -1,0 +1,18 @@
+Day-3 Research Task
+
+1] 502 BadGateway error:
+
+A 502 Bad Gateway error typically means that one server on the internet received an invalid response from another server. 
+HTTP status code from the 5xx class, which indicates server-side errors.
+For Example: You (the browser) ask Server A (like Nginx) for something.
+Server A then tries to ask Server B (your actual website/app server) for the real answer.
+But Server B doesn’t reply properly…
+So Server A gives up and shows: 502 Bad Gateway.
+
+2]In my Employee class, I declared empId as a variable, but when I use getEmpId(), why does it become capital?
+
+Java follows a naming rule for getter methods — and tools like IDEs (e.g., IntelliJ, Eclipse) auto-generate them using this rule:
+If your variable is called empId, then the getter method becomes:
+getEmpId()  
+Even though the variable is empId (with a small 'e'), the method name capitalizes the first letter of the variable name after get.
+"Capitalize the first letter of the field name when generating getXxx() or setXxx()."
