@@ -8,31 +8,44 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/emp/hello/hi")
 public class EmployeeController {
         @Autowired
         private EmployeeService es;
 
-        @GetMapping("/emp/hello")
+        @GetMapping
+        //@GetMapping("/emp/hello")
         public List<Employee> hello(){
 //        System.out.println("Hello world");
 //        return "Hello world this is universe";
             return es.getEmp();
         }
 
+        @GetMapping("/{empId}")
+        public Employee hello(@PathVariable int empId){
+//        System.out.println("Hello world");
+//        return "Hello world this is universe";
+          return es.getEmp(empId);
+    }
+
         //post method
-        @PostMapping("/emp/hello")
-        public String postmethod(){
-            return es.postmethod();
+        @PostMapping
+        //@PostMapping("/emp/hello")
+        public String postmethod(@RequestBody Employee employee){
+            //Employee employee = new Employee(1,"karthi","developer");
+            return es.postmethod(employee);
         }
 
-        @PutMapping("/emp/hello")
-        public String putmethod(){
-            return es.putmethod();
+        @PutMapping("/{empId}")
+        //@PutMapping("/emp/hello")
+        public String putmethod(@RequestBody Employee employee){
+            return es.putmethod(employee);
         }
 
-        @DeleteMapping("/emp/hello")
-        public String deletemethod(){
-            return es.deletemethod();
+        @DeleteMapping("/{empId}")
+        //@DeleteMapping("/emp/hello")
+        public String deleteEmpByIt(@PathVariable int empId){
+            return es.deleteEmpById(empId);
         }
     }
 
