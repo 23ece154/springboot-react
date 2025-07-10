@@ -3,49 +3,63 @@ package com.example.demo.controllers;
 import com.example.demo.models.Employee;
 import com.example.demo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/emp/hello/hi")
+@RequestMapping("/emp")
 public class EmployeeController {
         @Autowired
         private EmployeeService es;
 
-        @GetMapping
+        @PreAuthorize("hasAnyRole('ADMIN','USER')")
+        @GetMapping("/")
         //@GetMapping("/emp/hello")
         public List<Employee> hello(){
-//        System.out.println("Hello world");
-//        return "Hello world this is universe";
             return es.getEmp();
         }
 
+        @PreAuthorize("hasAnyRole('ADMIN','USER')")
         @GetMapping("/{empId}")
-        public Employee hello(@PathVariable int empId){
-//        System.out.println("Hello world");
-//        return "Hello world this is universe";
-          return es.getEmp(empId);
-    }
-
-        //post method
-        @PostMapping
-        //@PostMapping("/emp/hello")
-        public String postmethod(@RequestBody Employee employee){
-            //Employee employee = new Employee(1,"karthi","developer");
-            return es.postmethod(employee);
+        public Employee getMethodById(@PathVariable int empId){
+            return es.getMethodById(empId);
         }
 
+        @PreAuthorize("hasAnyRole('ADMIN','USER')")
+        @GetMapping("/jobrole/{jobrole}")
+        public List<Employee> getMethodByrole(@PathVariable String jobrole){
+            return es.getMethodByrole(jobrole);
+        }
+
+        @PreAuthorize("hasRole('ADMIN')")
         @PutMapping("/{empId}")
-        //@PutMapping("/emp/hello")
-        public String putmethod(@RequestBody Employee employee){
-            return es.putmethod(employee);
+        public String putMethod(@PathVariable int empId,@RequestBody Employee employee){
+            employee.setEmpId(empId);
+            return  es.updateEmployee(employee);
         }
 
+        @PreAuthorize("hasRole('ADMIN')")
+        @PostMapping("/")
+        public String addEmployee(@RequestBody Employee employee){
+            es.addEmployee(employee);
+            return "Employee added successfully!!!";
+        }
+
+
+        @PreAuthorize("hasRole('ADMIN')")
         @DeleteMapping("/{empId}")
-        //@DeleteMapping("/emp/hello")
-        public String deleteEmpByIt(@PathVariable int empId){
-            return es.deleteEmpById(empId);
+        public String deleteMapping(@PathVariable int empId) {
+            es.deleteMethodById(empId);
+            return "Employee deleted successfully";
+        }
+
+        @PreAuthorize("hasRole('ADMIN')")
+        @DeleteMapping("/")
+        public String deletealldatas() {
+            es.deletealldatas();
+            return "all employees deleted successfully";
         }
     }
 

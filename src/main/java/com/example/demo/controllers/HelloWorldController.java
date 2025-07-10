@@ -13,7 +13,6 @@ import java.util.List;
 public class HelloWorldController {
     @Autowired
     private HelloWorldService hws;
-
     @GetMapping("/hello")
     public List<Student> hello(){
 //        System.out.println("Hello world");
