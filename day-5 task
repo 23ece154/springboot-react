@@ -1,0 +1,27 @@
+.build():
+
+-> User.builder() starts building a user object step by step.
+-> You add details like:
+    * .username("admin")
+    * .password(...)
+    * .roles("ADMIN")
+->These are just settings – the user object isn't created yet.
+->.build() is used to create the final user object from all the settings you gave.
+->Without .build(), you won’t get a usable UserDetails object.
+
+
+CSRF:
+
+  WHAT?
+->CSRF stands for Cross-Site Request Forgery.
+->It’s an attack where a hacker tricks you into doing something on a site where you are already logged in.
+->Example: You’re logged into your bank. A fake site tricks your browser into sending a money transfer request.
+->It works because your browser automatically sends login cookies.
+  
+  HOW TO SOLVE THEM?
+->Websites use a CSRF token (a secret value) with forms to make sure the request is real.
+->If the token is missing or wrong, the site blocks the request.
+->Spring Security protects against CSRF by default.
+->If you are building a REST API, you can disable CSRF:
+          http.csrf().disable();
+->Disable it only if you are not using cookies.
