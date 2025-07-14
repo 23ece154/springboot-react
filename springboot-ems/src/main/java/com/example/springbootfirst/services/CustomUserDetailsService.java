@@ -3,10 +3,12 @@ package com.example.springbootfirst.services;
 import com.example.springbootfirst.models.RegisterDetails;
 import com.example.springbootfirst.repository.RegisterDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,4 +38,5 @@ public class CustomUserDetailsService implements UserDetailsService {
                 authorities
         );
     }
+
 }

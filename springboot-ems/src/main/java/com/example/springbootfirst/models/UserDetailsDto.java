@@ -1,5 +1,6 @@
 package com.example.springbootfirst.models;
 
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDetailsDto {
+  private int empId;
   private String name;
   private String userName;
   private String email;
